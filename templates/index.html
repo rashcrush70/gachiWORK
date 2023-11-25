@@ -15,17 +15,17 @@
         <div class="product">
             <h3>Engine Oil</h3>
             <p>$25.99</p>
-            <button onclick="addToCart(1)">Add to Cart</button>
+            <button onclick="addToCart(1, 'Engine Oil', 25.99)">Add to Cart</button>
         </div>
         <div class="product">
             <h3>Brake Pads</h3>
             <p>$35.99</p>
-            <button onclick="addToCart(2)">Add to Cart</button>
+            <button onclick="addToCart(2, 'Brake Pads', 35.99)">Add to Cart</button>
         </div>
         <div class="product">
             <h3>Air Filter</h3>
             <p>$12.99</p>
-            <button onclick="addToCart(3)">Add to Cart</button>
+            <button onclick="addToCart(3, 'Air Filter', 12.99)">Add to Cart</button>
         </div>
     </div>
 
@@ -49,9 +49,11 @@
         const cart = [];
 
         // Function to add a product to the cart
-        function addToCart(productId) {
+        function addToCart(productId, name, price) {
             const product = {
                 id: productId,
+                name: name,
+                price: price
                 // Add other product details as needed
             };
             cart.push(product);
@@ -75,6 +77,7 @@
             if (productsContainer.style.display === 'block') {
                 productsContainer.style.display = 'none';
                 cartContainer.style.display = 'block';
+                updateCartDisplay(); // Show the cart contents when switching to the cart view
             } else {
                 productsContainer.style.display = 'block';
                 cartContainer.style.display = 'none';
