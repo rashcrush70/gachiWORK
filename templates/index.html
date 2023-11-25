@@ -10,6 +10,18 @@
     <header>
         <h1>Car Parts Shop</h1>
     </header>
+
+    <section id="catalog-container">
+        <h2>Car Brands Catalog</h2>
+        <ul id="car-brands">
+            <li onclick="showProducts('Toyota')">Toyota</li>
+            <li onclick="showProducts('Ford')">Ford</li>
+            <li onclick="showProducts('Honda')">Honda</li>
+            <li onclick="showProducts('Nissan')">Nissan</li>
+            <li onclick="showProducts('Subaru')">Subaru</li>
+            <!-- Add more car brands as needed -->
+        </ul>
+    </section>
     
     <div id="products-container">
         <div class="product">
@@ -47,6 +59,33 @@
     <script>
         // Sample cart data
         const cart = [];
+
+        // Sample catalog data
+        const catalog = {
+            Toyota: [
+                { id: 1, name: 'Toyota Engine Oil', price: 25.99 },
+                { id: 2, name: 'Toyota Brake Pads', price: 35.99 },
+                // Add more Toyota products as needed
+            ],
+            Ford: [
+                { id: 3, name: 'Ford Engine Oil', price: 28.99 },
+                { id: 4, name: 'Ford Brake Pads', price: 38.99 },
+                // Add more Ford products as needed
+            ],
+            Honda: [
+                { id: 5, name: 'Honda Engine Oil', price: 22.99 },
+                { id: 6, name: 'Honda Brake Pads', price: 32.99 },
+                // Add more Honda products as needed
+            ],
+            Nissan: [
+                { id: 7, name: 'Nissan Engine Oil', price: 23.99 },
+                { id: 8, name: 'Nissan Brake Pads', price: 34.99 },
+            ],
+            Subaru: [
+                { id: 9, name: 'Subaru Engine Oil', price: 21.99 },
+                { id: 10, name: 'Subaru Brake Pads', price: 32.99 },
+            ],
+        };
 
         // Function to add a product to the cart
         function addToCart(productId, name, price) {
@@ -122,12 +161,49 @@
             }
         }
 
-        // Function to simulate the checkout process
+        // Function to display products for a selected car brand
+        function showProducts(brand) {
+            const productsContainer = document.getElementById('products-container');
+            const catalogProducts = catalog[brand];
+
+            // Clear previous products
+            productsContainer.innerHTML = '';
+
+            // Display products for the selected brand
+            if (catalogProducts) {
+                catalogProducts.forEach(product => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'product';
+                    productItem.innerHTML = `
+                        <h3>${product.name}</h3>
+                        <p>$${product.price.toFixed(2)}</p>
+                        <button onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Add to Cart</button>
+                    `;
+                    productsContainer.appendChild(productItem);
+                });
+            }
+
+            // Show the products container
+            productsContainer.style.display = 'block';
+
+            // Update selected styling in the catalog
+            const carBrands = document.getElementById('car-brands').getElementsByTagName('li');
+            for (let i = 0; i < carBrands.length; i++) {
+                carBrands[i].classList.remove('selected');
+            }
+            document.querySelector(`#car-brands li:contains('${brand}')`).classList.add('selected');
+        }
+
         function checkout() {
             alert('Thank you for your purchase!');
             cart.length = 0; // Clear the cart
             updateCart();
             toggleCart(); // Hide the cart display after checkout
+        }
+
+        // Helper function to check if an element contains specific text
+        function containsText(element, text) {
+            return element.innerText.toLowerCase().includes(text.toLowerCase());
         }
     </script>
 </body>
