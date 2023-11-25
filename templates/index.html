@@ -11,7 +11,12 @@
         <h1>Car Parts Shop</h1>
     </header>
 
-    <section id="catalog-container">
+    <div id="navbar">
+        <a href="#" onclick="showCatalog()">Catalog</a>
+        <!-- Add a Catalog button to the navigation bar -->
+    </div>
+
+    <section id="catalog-container" style="display:none;">
         <h2>Car Brands Catalog</h2>
         <ul id="car-brands">
             <li onclick="showProducts('Toyota')">Toyota</li>
@@ -162,6 +167,15 @@
         }
 
         // Function to display products for a selected car brand
+        function updateNavbarSelection(brand) {
+            const navbarLinks = document.getElementById('navbar').getElementsByTagName('a');
+            for (let i = 0; i < navbarLinks.length; i++) {
+                navbarLinks[i].classList.remove('selected');
+            }
+            document.querySelector(`#navbar a:contains('${brand}')`).classList.add('selected');
+        }
+
+        // Modified function to show products for a selected car brand
         function showProducts(brand) {
             const productsContainer = document.getElementById('products-container');
             const catalogProducts = catalog[brand];
@@ -187,11 +201,7 @@
             productsContainer.style.display = 'block';
 
             // Update selected styling in the catalog
-            const carBrands = document.getElementById('car-brands').getElementsByTagName('li');
-            for (let i = 0; i < carBrands.length; i++) {
-                carBrands[i].classList.remove('selected');
-            }
-            document.querySelector(`#car-brands li:contains('${brand}')`).classList.add('selected');
+            updateNavbarSelection(brand);
         }
 
         function checkout() {
@@ -204,6 +214,27 @@
         // Helper function to check if an element contains specific text
         function containsText(element, text) {
             return element.innerText.toLowerCase().includes(text.toLowerCase());
+        }
+
+        function showCatalog() {
+            const catalogContainer = document.getElementById('catalog-container');
+            const productsContainer = document.getElementById('products-container');
+
+            // Toggle visibility
+            if (catalogContainer.style.display === 'block') {
+                catalogContainer.style.display = 'none';
+                productsContainer.style.display = 'block';
+            } else {
+                catalogContainer.style.display = 'block';
+                productsContainer.style.display = 'none';
+            }
+
+            // Update selected styling in the navigation bar
+            const navbarLinks = document.getElementById('navbar').getElementsByTagName('a');
+            for (let i = 0; i < navbarLinks.length; i++) {
+                navbarLinks[i].classList.remove('selected');
+            }
+            document.querySelector(`#navbar a:contains('Catalog')`).classList.add('selected');
         }
     </script>
 </body>
