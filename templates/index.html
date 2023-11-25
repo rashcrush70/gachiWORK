@@ -60,6 +60,15 @@
             updateCart();
         }
 
+        // Function to remove a product from the cart
+        function removeFromCart(productId) {
+            const index = cart.findIndex(item => item.id === productId);
+            if (index !== -1) {
+                cart.splice(index, 1);
+                updateCart();
+            }
+        }
+
         // Function to update the cart display
         function updateCart() {
             // Implement your cart update logic here
@@ -97,6 +106,13 @@
                 cart.forEach(item => {
                     const cartItem = document.createElement('li');
                     cartItem.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                    
+                    // Add remove button
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Remove';
+                    removeButton.onclick = () => removeFromCart(item.id);
+                    cartItem.appendChild(removeButton);
+
                     cartContainer.appendChild(cartItem);
                 });
 
