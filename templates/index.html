@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet"/>
-    <title>Car Parts Shop</title>
+    <title>Магазин Авто Запчастей</title>
 </head>
 <body>
     <header>
@@ -13,7 +13,7 @@
 
     <div id="navbar">
         <a href="#" onclick="showCatalog()">Каталог</a>
-        <!-- Add a Catalog button to the navigation bar -->
+        <button onclick="toggleCart()">Корзина</button> 
     </div>
 
     <section id="catalog-container" style="display:none;">
@@ -24,7 +24,6 @@
             <li onclick="showProducts('Honda')">Honda</li>
             <li onclick="showProducts('Nissan')">Nissan</li>
             <li onclick="showProducts('Subaru')">Subaru</li>
-            <!-- Add more car brands as needed -->
         </ul>
     </section>
     
@@ -32,32 +31,32 @@
         <div class="product">
             <h3>Двигатель</h3>
             <p>400.000₸</p>
-            <button onclick="addToCart(1, 'Двигатель', 400.000)">Add to Cart</button>
+            <button onclick="addToCart(1, 'Двигатель', 400.000)">Добавить в корзину</button>
         </div>
         <div class="product">
             <h3>Тормоза</h3>
             <p>50.000₸</p>
-            <button onclick="addToCart(2, 'Тормоза', 50.000)">Add to Cart</button>
+            <button onclick="addToCart(2, 'Тормоза', 50.000)">Добавить в корзину</button>
         </div>
         <div class="product">
             <h3>Фары</h3>
             <p>85.000₸</p>
-            <button onclick="addToCart(3, 'Фары', 80.000)">Add to Cart</button>
+            <button onclick="addToCart(3, 'Фары', 80.000)">Добавить в корзину</button>
         </div>
         <div class="product">
             <h3>Бампер</h3>
             <p>100.000₸</p>
-            <button onclick="addToCart(4, 'Бампер', 100.000)">Add to Cart</button>
+            <button onclick="addToCart(4, 'Бампер', 100.000)">Добавить в корзину</button>
         </div>
         <div class="product">
             <h3>Капот</h3>
             <p>180.000₸</p>
-            <button onclick="addToCart(5, 'Капот', 170.000)">Add to Cart</button>
+            <button onclick="addToCart(5, 'Капот', 170.000)">Добавить в корзину</button>
         </div>
         <div class="product">
             <h3>Усилитель тормоза</h3>
             <p>250.000₸</p>
-            <button onclick="addToCart(6, 'Усилитель тормоза', 200.000)">Add to Cart</button>
+            <button onclick="addToCart(6, 'Усилитель тормоза', 200.000)">Добавить в корзину</button>
         </div>
     </div>
 
@@ -68,10 +67,7 @@
         <ul id="cart"></ul>
         <p>Итого: <span id="total">0.000</span>₸</p>
         <button onclick="checkout()">Купить</button>
-    </div>
-
-    <div id="cart-button-container">
-        <button onclick="toggleCart()">Корзина</button>
+        <button onclick="toggleCart()">Назад</button>
     </div>
 
     <footer>
@@ -79,25 +75,20 @@
     </footer>
 
     <script>
-        // Sample cart data
         const cart = [];
 
-        // Sample catalog data
         const catalog = {
             Toyota: [
                 { id: 1, name: 'Двигатель Тойота', price: 650.000 },
                 { id: 2, name: 'Фары Тойота', price: 150.000 },
-                // Add more Toyota products as needed
             ],
             Ford: [
                 { id: 3, name: 'Форд Двигатель', price: 270.000 },
                 { id: 4, name: 'Бампер Форд', price: 200.000 },
-                // Add more Ford products as needed
             ],
             Honda: [
                 { id: 5, name: 'Honda Двигатель', price: 350.000 },
                 { id: 6, name: 'Honda Капот', price: 100.000 },
-                // Add more Honda products as needed
             ],
             Nissan: [
                 { id: 7, name: 'Nissan Двигатель', price: 355.000 },
@@ -112,44 +103,30 @@
         function showNotification(message) {
             const notificationElement = document.getElementById('notification');
             notificationElement.textContent = message;
-    
-            // Remove the fade-out class if it was added before
             notificationElement.classList.remove('fade-out');
-    
-            // Make the notification visible and gradually fade in
             notificationElement.style.opacity = '1';
             notificationElement.style.visibility = 'visible';
-    
-            // Add the fade-out class after a delay to trigger the fade-out transition
             setTimeout(() => {
                 notificationElement.classList.add('fade-out');
             }, 100);
-    
-            // Hide the notification after a certain duration (e.g., 3 seconds)
             setTimeout(() => {
-                // Reset opacity and visibility for the next notification
                 notificationElement.style.opacity = '0';
                 notificationElement.style.visibility = 'hidden';
-                // Remove the fade-out class to reset for the next notification
                 notificationElement.classList.remove('fade-out');
             }, 3000);
         }
     
-        // Function to add a product to the cart
         function addToCart(productId, name, price) {
             const product = {
                 id: productId,
                 name: name,
                 price: price
-                // Add other product details as needed
             };
             cart.push(product);
             updateCart();
-    
-            // Show a notification when a product is added to the cart
-            showNotification(`${name} added to the cart!`);
+            showNotification(`${name} добавлен в корзину!`);
         }
-$
+
         // Function to remove a product from the cart
         function removeFromCart(productId) {
             const index = cart.findIndex(item => item.id === productId);
@@ -199,7 +176,7 @@ $
                     
                     // Add remove button
                     const removeButton = document.createElement('button');
-                    removeButton.textContent = 'Remove';
+                    removeButton.textContent = 'Убрать';
                     removeButton.onclick = () => removeFromCart(item.id);
                     cartItem.appendChild(removeButton);
 
@@ -212,7 +189,6 @@ $
             }
         }
 
-        // Function to display products for a selected car brand
         function updateNavbarSelection(brand) {
             const navbarLinks = document.getElementById('navbar').getElementsByTagName('a');
             for (let i = 0; i < navbarLinks.length; i++) {
@@ -221,15 +197,10 @@ $
             document.querySelector(`#navbar a:contains('${brand}')`).classList.add('selected');
         }
 
-        // Modified function to show products for a selected car brand
         function showProducts(brand) {
             const productsContainer = document.getElementById('products-container');
             const catalogProducts = catalog[brand];
-
-            // Clear previous products
             productsContainer.innerHTML = '';
-
-            // Display products for the selected brand
             if (catalogProducts) {
                 catalogProducts.forEach(product => {
                     const productItem = document.createElement('div');
@@ -237,27 +208,22 @@ $
                     productItem.innerHTML = `
                         <h3>${product.name}</h3>
                         <p>${product.price.toFixed(3)}₸</p>
-                        <button onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Add to Cart</button>
+                        <button onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Добавить в корзину</button>
                     `;
                     productsContainer.appendChild(productItem);
                 });
             }
-
-            // Show the products container
             productsContainer.style.display = 'block';
-
-            // Update selected styling in the catalog
             updateNavbarSelection(brand);
         }
 
         function checkout() {
-            alert('Thank you for your purchase!');
-            cart.length = 0; // Clear the cart
+            alert('Спасибо за покупку!');
+            cart.length = 0; 
             updateCart();
-            toggleCart(); // Hide the cart display after checkout
+            toggleCart(); 
         }
 
-        // Helper function to check if an element contains specific text
         function containsText(element, text) {
             return element.innerText.toLowerCase().includes(text.toLowerCase());
         }
@@ -266,7 +232,6 @@ $
             const catalogContainer = document.getElementById('catalog-container');
             const productsContainer = document.getElementById('products-container');
 
-            // Toggle visibility
             if (catalogContainer.style.display === 'block') {
                 catalogContainer.style.display = 'none';
                 productsContainer.style.display = 'block';
@@ -275,7 +240,6 @@ $
                 productsContainer.style.display = 'none';
             }
 
-            // Update selected styling in the navigation bar
             const navbarLinks = document.getElementById('navbar').getElementsByTagName('a');
             for (let i = 0; i < navbarLinks.length; i++) {
                 navbarLinks[i].classList.remove('selected');
