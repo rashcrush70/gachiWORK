@@ -6,10 +6,16 @@ body {
 }
 
 header {
-    background-color: #333;
-    color: white;
+    background-image: url(https://media.istockphoto.com/id/185218695/photo/high-precision-many-screw.jpg?s=612x612&w=0&k=20&c=udYbJKfHdydlRFwYXdTpjpyNmHuGcG-kQHIa1iVSg60=);
+    color: gray;
+    opacity: 80%;
     text-align: center;
     padding: 1em;
+}
+
+h1 {
+    color: yellow;
+    font-size: 50px;
 }
 
 main {
@@ -33,9 +39,6 @@ footer {
     color: white;
     text-align: center;
     padding: 1em;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
 
 #catalog-container {
@@ -60,7 +63,7 @@ footer {
 }
 
 #navbar {
-    background-color: #333;
+    background-color: #666666;
     overflow: hidden;
 }
 
