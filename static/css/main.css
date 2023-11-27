@@ -39,6 +39,24 @@ main {
     background-size: cover; /* Ensure the background image covers the entire product container */
 }
 
+.product button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin: 10px auto; /* Center the button within the product */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product button:hover {
+    background-color: #45a049;
+}
+
 .product h3 {
     font-size: 1.5em; /* Increase the font size of product titles */
 }
@@ -117,4 +135,69 @@ footer {
 
 #navbar button:hover {
     background-color: #45a049;
+}
+
+#cart-container {
+    text-align: center;
+}
+
+#cart {
+    list-style: none;
+    padding: 0;
+}
+
+#cart li {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+    padding: 1em;
+    margin: 1em;
+    width: 300px;
+    display: inline-block;
+    text-align: left;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#cart li button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#cart li button:hover {
+    background-color: #c9302c;
+}
+
+#total {
+    font-weight: bold;
+    color: #333;
+}
+
+#cart-container button {
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+#cart-container button:hover {
+    background-color: #46b8da;
 }
