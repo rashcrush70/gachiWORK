@@ -46,6 +46,8 @@
         </div>
     </div>
 
+    <div id="notification" class="fade-out" style="opacity: 0; visibility: hidden; position: fixed; top: 0; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 15px; text-align: center; transition: opacity 0.3s ease-in-out;"></div>
+
     <div id="cart-container" style="display:none;">
         <h2>Shopping Cart</h2>
         <ul id="cart"></ul>
@@ -92,6 +94,32 @@
             ],
         };
 
+        function showNotification(message) {
+            const notificationElement = document.getElementById('notification');
+            notificationElement.textContent = message;
+    
+            // Remove the fade-out class if it was added before
+            notificationElement.classList.remove('fade-out');
+    
+            // Make the notification visible and gradually fade in
+            notificationElement.style.opacity = '1';
+            notificationElement.style.visibility = 'visible';
+    
+            // Add the fade-out class after a delay to trigger the fade-out transition
+            setTimeout(() => {
+                notificationElement.classList.add('fade-out');
+            }, 100);
+    
+            // Hide the notification after a certain duration (e.g., 3 seconds)
+            setTimeout(() => {
+                // Reset opacity and visibility for the next notification
+                notificationElement.style.opacity = '0';
+                notificationElement.style.visibility = 'hidden';
+                // Remove the fade-out class to reset for the next notification
+                notificationElement.classList.remove('fade-out');
+            }, 3000);
+        }
+    
         // Function to add a product to the cart
         function addToCart(productId, name, price) {
             const product = {
@@ -102,6 +130,9 @@
             };
             cart.push(product);
             updateCart();
+    
+            // Show a notification when a product is added to the cart
+            showNotification(`${name} added to the cart!`);
         }
 
         // Function to remove a product from the cart
