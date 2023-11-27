@@ -32,6 +32,17 @@ main {
     padding: 1em;
     margin: 1em;
     width: 300px;
+    display: inline-block; /* Add this line to make products inline */
+    text-align: center; /* Center the content within each product */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.product h3 {
+    font-size: 1.5em; /* Increase the font size of product titles */
+}
+
+.product p {
+    font-size: 1.2em; /* Increase the font size of product prices */
 }
 
 footer {
@@ -39,6 +50,9 @@ footer {
     color: white;
     text-align: center;
     padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 #catalog-container {
@@ -84,4 +98,21 @@ footer {
 #navbar a.selected {
     background-color: #4CAF50;
     color: white;
+}
+
+#navbar button {
+    float: right; /* Align the button to the right side of the navbar */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#navbar button:hover {
+    background-color: #45a049;
 }
