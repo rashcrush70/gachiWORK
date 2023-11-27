@@ -201,3 +201,39 @@ footer {
 #cart-container button:hover {
     background-color: #46b8da;
 }
+
+.cart-product {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 200px; /* Adjust the height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.cart-product h3 {
+    font-size: 1.5em;
+    color: white; /* Set text color for better visibility */
+}
+
+.cart-product p {
+    font-size: 1.2em;
+    color: white; /* Set text color for better visibility */
+}
+
+.cart-product button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-product button:hover {
+    background-color: #c9302c;
+}
