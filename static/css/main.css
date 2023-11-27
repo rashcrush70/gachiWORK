@@ -29,12 +29,14 @@ main {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
+    color: white;
     padding: 1em;
     margin: 1em;
     width: 300px;
-    display: inline-block; /* Add this line to make products inline */
-    text-align: center; /* Center the content within each product */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    background-size: cover; /* Ensure the background image covers the entire product container */
 }
 
 .product h3 {
